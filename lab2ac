@@ -1,0 +1,39 @@
+INCLUDE Irvine32.inc
+.data
+	a db 1
+	b db 2
+	interm dw ?
+	interm1 dw ?
+	interm2 dw ?
+	rez dw ?
+.code
+	main proc
+	mov eax, 0
+	mov al, b
+	imul ax, b
+	add ax, a
+	mov interm, ax
+	mov eax,0
+     mov bx,36
+     mov al,b
+     imul ax,b
+     div ax
+	add interm1, ax
+	mov eax, 0
+	mov bx, 25
+     mov al, b
+     imul ax, b
+     div ax
+	add ax, 1
+	add interm2, ax
+     xchg interm2, ax
+	xchg ax, interm1
+	cwd
+	div interm1
+	sub al, a
+	sub al, b
+	call WriteInt
+	call crlf
+	exit
+	main ENDP
+	END main
